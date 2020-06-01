@@ -7,4 +7,17 @@ Dropping an 8 byte type to a 4 (or 2 or 1 byte) type will keep halving the RAM r
 
 Looking at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
 
+```
+# example run on a made-up dataframe in __main__
 
+dtype_diet$ python dtype_diet.py 
+Given a dataframe, check for lowest possible conversions:
+Smallest non-breaking converstion per column:
+a (int64) currently taking 928 bytes, to save 700 bytes try `a.astype(int8)`
+b (int64) currently taking 928 bytes, to save 600 bytes try `b.astype(int16)`
+c (int64) currently taking 928 bytes, to save 400 bytes try `c.astype(int32)`
+d (float64) currently taking 928 bytes, to save 600 bytes try `d.astype(float16)`
+e (float64) currently taking 928 bytes, to save 400 bytes try `e.astype(float32)`
+str_a (object) currently taking 6,328 bytes, to save 5,958 bytes try `str_a.astype(category)`
+str_b (object) currently taking 6,018 bytes - no suggestion
+```
