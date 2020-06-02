@@ -7,7 +7,7 @@ Dropping an 8 byte type to a 4 (or 2 or 1 byte) type will keep halving the RAM r
 
 Whilst working on the [2nd edition of High Performance Python](https://www.goodreads.com/book/show/49828191-high-performance-python) with Micha Gorelick I wrote on RAM reduction in the Using Less RAM chapter for Pandas and NumPy and I wanted to write a tool like this, but didn't have time (heck, writing the 2nd edition took 9 months!). So, I got to write this tool after publication instead.
 
-Here's an example (see Notebook: ./example_sell_prices_ram_shrinkage.ipynb) on a Kaggle dataset showing a reduction of 957 -> 85MB:
+Here's an example (see Notebook: [https://www.goodreads.com/book/show/49828191-high-performance-python](example_sell_prices_ram_shrinkage.ipynb) ) on a Kaggle dataset showing a reduction of 957 -> 85MB:
 
 ![sell_prices after dtype_dtype](example_sell_prices.png)
 
