@@ -78,20 +78,20 @@ def test_ser_ints():
     # check for low simple int
     ser = pd.Series([1] * 3)
     as_type = count_errors(ser, 'int32')
-    assert as_type.not_isclose_sum == 0
+    assert as_type.nbr_different == 0
     as_type = count_errors(ser, 'int16')
-    assert as_type.not_isclose_sum == 0
+    assert as_type.nbr_different == 0
     as_type = count_errors(ser, 'int8')
-    assert as_type.not_isclose_sum == 0
+    assert as_type.nbr_different == 0
 
     # check for int needing bigger than int16
     ser = pd.Series([65536] * 3)
     as_type = count_errors(ser, 'int32')
-    assert as_type.not_isclose_sum == 0
+    assert as_type.nbr_different == 0
     as_type = count_errors(ser, 'int16')
-    assert as_type.not_isclose_sum == 3
+    assert as_type.nbr_different == 3
     as_type = count_errors(ser, 'int8')
-    assert as_type.not_isclose_sum == 3
+    assert as_type.nbr_different == 3
 
 
 if __name__ == "__main__":
