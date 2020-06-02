@@ -10,7 +10,7 @@ Here's an example (see Notebook: ./example_sell_prices_ram_shrinkage.ipynb) on a
 ![sell_prices after dtype_dtype](example_sell_prices.png)
 
 
-Looking at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
+Look at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
 
 ```
 # example run on a made-up dataframe in __main__
@@ -43,6 +43,6 @@ Run `pytest dtype_diet.py` (better yet - add more tests!). Push to github.
 ### Setup
 
 ```
-$ conda create -n dtype_diet python=3.8 pandas jupyter pyarrow 
+$ conda create -n dtype_diet python=3.8 pandas jupyter pyarrow pytest
 $ conda activate dtype_diet
 ```
