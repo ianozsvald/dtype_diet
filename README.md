@@ -18,6 +18,7 @@ Recommendations:
 * Consider if f32 or f16 will be useful (see Caveats - f32 is _probably_ a reasonable choice unless you have huge ranges of floats)
 * Consider if int32, int16, int8 will be useful (see Caveats - overflow may be an issue)
 * Look at https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.convert_dtypes.html which recommends Pandas nullable dtype alternatives (e.g. to avoid promoting an int64 with NaN items to float64, instead you get Int64 with NaNs and no data loss)
+* Look at Extension arrays like https://github.com/JDASoftwareGroup/rle-array (thanks @repererum [for the tweet](https://twitter.com/crepererum/status/1267441357339201536))
 
 Look at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
 
