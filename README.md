@@ -9,6 +9,13 @@ Here's an example (see Notebook: ./example_sell_prices_ram_shrinkage.ipynb) on a
 
 ![sell_prices after dtype_dtype](example_sell_prices.png)
 
+Recommendations:
+
+* Run `report_on_dataframe(your_df)` to get recommendations
+* Consider if Categoricals will save you RAM (see Caveats below)
+* Consider if f32 or f16 will be useful (see Caveats - f32 is _probably_ a reasonable choice unless you have huge ranges of floats)
+* Consider if int32, int16, int8 will be useful (see Caveats - overflow may be an issue)
+* Look at https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.convert_dtypes.html which recommends Pandas nullable dtype alternatives (e.g. to avoid promoting an int64 with NaN items to float64, instead you get Int64 with NaNs and no data loss)
 
 Look at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
 
