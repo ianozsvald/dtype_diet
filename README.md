@@ -41,7 +41,7 @@ str_b (object) currently taking 6,018 bytes - no suggestion
 
 * reduced numeric ranges might lead to overflow (TODO document)
 * category dtype can have unexpected effects e.g. need for observed=True in groupby (TODO document)
-* f16 is likely to be simulated on modern hardware so calculations will be 2-3* slower than on f32 or f16
+* f16 is likely to be simulated on modern hardware so calculations will be 2-3* slower than on f32 or f64
 * we could do with a link that explains binary representation of float & int for those wanting to learn more
 
 ## Development 
