@@ -52,6 +52,10 @@ There's a bunch of interesting notes in the initial Tweet I sent out: https://tw
 
 Run `pytest dtype_diet.py` (better yet - add more tests!). Push to github.
 
+### Contributors
+
+* Antony Milbourne https://github.com/amilbourne
+
 ### Setup
 
 ```
