@@ -22,7 +22,30 @@ Recommendations:
 
 Look at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
 
+## Usage
+
+### CLI
+```bash
+$ rm -f dtype_diet.py
+$ wget https://raw.githubusercontent.com/ianozsvald/dtype_diet/master/dtype_diet.py
 ```
+
+### Notebook
+```bash
+%%bash
+rm -f dtype_diet.py
+wget https://raw.githubusercontent.com/ianozsvald/dtype_diet/master/dtype_diet.py
+```
+
+---
+
+### Source file/Notebook cell
+
+```python
+import dtype_diet
+...(for rest of the usage example see notebook mention in previous section)...
+```
+
 # example run on a made-up dataframe in __main__
 
 dtype_diet$ python dtype_diet.py 
