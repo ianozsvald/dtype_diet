@@ -21,9 +21,10 @@ from collections import namedtuple
 AsType = namedtuple('AsType', ['dtype', 'nbr_different', 'nbytes', 'col'])
 
 
-def count_errors(ser, new_dtype):
+def count_errors(ser, new_dtype, unsafe=False):
     """After converting ser to new dtype, count whether items have isclose()"""
-    tmp_ser = ser.astype(new_dtype)
+    errors = 'ignore' if unsafe else None
+    tmp_ser = ser.astype(new_dtype, errors=errors)
     # metric will be a list of Trues if the change has equivalent value, False otherwise
     # checks for approx equal which may not be what we want
     #metric = np.isclose(ser, tmp_ser)
@@ -34,17 +35,17 @@ def count_errors(ser, new_dtype):
 
 
 def map_dtypes_to_choices(ser):
-    new_dtypes = {'int64': ['Int32', 'Int32', 'Int8'],
+    new_dtypes = {'int64': ['Int32', 'Int16', 'Int8'],
                   'float64': ['float32', 'float16'],
                   'object': ['category']}
     return new_dtypes.get(ser.dtype.name)
 
 
-def get_smallest_valid_conversion(ser):
+def get_smallest_valid_conversion(ser, unsafe):
     new_dtypes = map_dtypes_to_choices(ser)
     if new_dtypes:
         for new_dtype in reversed(new_dtypes):
-            as_type = count_errors(ser, new_dtype)
+            as_type = count_errors(ser, new_dtype, unsafe)
             if as_type.nbr_different == 0:
                 return as_type
     return None
@@ -58,14 +59,13 @@ def get_improvement(as_type, current_nbytes):
     return report
 
 
-def report_on_dataframe(df, unit="MB"):
+def report_on_dataframe(df, unit="MB", unsafe=False):
     """[Report on columns that might be converted]
 
     Args:
         df ([type]): [description]
         unit (str, optional): [byte, MB, GB]. Defaults to "MB".
     """
-    
 
     unit_map = {"MB": 1024, "GB": 1024*1024, "byte": 1}
     divide_by = unit_map[unit]
@@ -73,7 +73,7 @@ def report_on_dataframe(df, unit="MB"):
 
     for col in df.columns:
         current_dtype = df[col].dtype
-        as_type = get_smallest_valid_conversion(df[col])
+        as_type = get_smallest_valid_conversion(df[col], unsafe)
         nbytes = df[col].memory_usage(deep=True)
         msg = None
         if as_type:
@@ -94,10 +94,8 @@ def optimize_dtypes(df, proposed_df, unsafe=False):
     errors = 'ignore' if unsafe else None
     for col in df.columns:
         new_dtype = proposed_df.loc[col, 'Proposed dtype']
-        new_df[col] = new_df[col].astype(new_dtype)
-    
-    ...
-
+        new_df[col] = new_df[col].astype(new_dtype, errors=errors)
+    return new_df
 def test_ser_ints():
     # check for low simple int
     ser = pd.Series([1] * 3)
