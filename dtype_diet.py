@@ -28,13 +28,13 @@ def count_errors(ser, new_dtype):
     # checks for approx equal which may not be what we want
     #metric = np.isclose(ser, tmp_ser)
     metric = ser == tmp_ser
-    nbytes = tmp_ser.memory_usage(deep=True)
+    nbytes = tmp_ser.memory_usage(deep=True) 
     as_type = AsType(new_dtype, (~metric).sum(), nbytes, ser.name)
     return as_type
 
 
 def map_dtypes_to_choices(ser):
-    new_dtypes = {'int64': ['int32', 'int16', 'int8'],
+    new_dtypes = {'int64': ['Int32', 'Int32', 'Int8'],
                   'float64': ['float32', 'float16'],
                   'object': ['category']}
     return new_dtypes.get(ser.dtype.name)
@@ -52,27 +52,51 @@ def get_smallest_valid_conversion(ser):
 
 def get_improvement(as_type, current_nbytes):
     ram_usage_improvement = current_nbytes - as_type.nbytes
-    report = None
+    report = (as_type.col, current_nbytes, None, None, None)
     if ram_usage_improvement > 0:
-        report = f"save {ram_usage_improvement:,} bytes try `{as_type.col}.astype({as_type.dtype})`"
+        report = (as_type.col, current_nbytes, as_type.nbytes, as_type.dtype, ram_usage_improvement)
     return report
 
 
-def report_on_dataframe(df):
-    """Report on columns that might be converted"""
-    print("Smallest non-breaking converstion per column:")
+def report_on_dataframe(df, unit="MB"):
+    """[Report on columns that might be converted]
+
+    Args:
+        df ([type]): [description]
+        unit (str, optional): [byte, MB, GB]. Defaults to "MB".
+    """
+    
+
+    unit_map = {"MB": 1024, "GB": 1024*1024, "byte": 1}
+    divide_by = unit_map[unit]
+    list_of_conversions = []
+
     for col in df.columns:
+        current_dtype = df[col].dtype
         as_type = get_smallest_valid_conversion(df[col])
         nbytes = df[col].memory_usage(deep=True)
         msg = None
         if as_type:
-            report = get_improvement(as_type, nbytes)
-            if report:
-                msg = f"{col} ({df[col].dtype.name}) currently taking {nbytes:,} bytes, to {report}"
-        if msg:
-            print(msg)
-        else:
-            print(f"{col} ({df[col].dtype.name}) currently taking {nbytes:,} bytes - no suggestion") 
+            col, current_bytes, after_bytes, proposed_dtype, ram_usage_improvement = get_improvement(as_type, nbytes)
+            current_memory = current_bytes / divide_by
+            after_memory = after_bytes / divide_by if after_bytes else None
+            ram_usage_improvement = ram_usage_improvement / divide_by if after_bytes else None
+
+        list_of_conversions.append((col, current_dtype, proposed_dtype, current_memory, after_memory, ram_usage_improvement))
+    columns = ['Column', 'Current dtype','Proposed dtype', f'Current Memory ({unit})', f'Proposed Memory ({unit})', f'Ram Usage Improvement ({unit})']
+    report_df = pd.DataFrame(list_of_conversions, columns=columns)
+    report_df['Ram Usage Improvement (%)'] =  report_df[f'Ram Usage Improvement ({unit})'] / report_df[f'Current Memory ({unit})']
+    report_df = report_df.set_index('Column')
+    return report_df
+
+def optimize_dtypes(df, proposed_df, unsafe=False):
+    new_df = df.copy()
+    errors = 'ignore' if unsafe else None
+    for col in df.columns:
+        new_dtype = proposed_df.loc[col, 'Proposed dtype']
+        new_df[col] = new_df[col].astype(new_dtype)
+    
+    ...
 
 def test_ser_ints():
     # check for low simple int
