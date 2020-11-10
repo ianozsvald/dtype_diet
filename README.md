@@ -37,8 +37,6 @@ rm -f dtype_diet.py
 wget https://raw.githubusercontent.com/ianozsvald/dtype_diet/master/dtype_diet.py
 ```
 
----
-
 ### Source file/Notebook cell
 
 ```python
