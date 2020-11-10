@@ -78,6 +78,7 @@ Run `pytest dtype_diet.py` (better yet - add more tests!). Push to github.
 ### Contributors
 
 * Antony Milbourne https://github.com/amilbourne
+* Mani https://github.com/neomatrix369
 
 ### Setup
 
