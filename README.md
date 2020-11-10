@@ -46,8 +46,9 @@ import dtype_diet
 ...(for rest of the usage example see notebook mention in previous section)...
 ```
 
-# example run on a made-up dataframe in __main__
+# example run on a made-up dataframe in main
 
+```
 dtype_diet$ python dtype_diet.py 
 Given a dataframe, check for lowest possible conversions:
 Smallest non-breaking converstion per column:
