@@ -25,12 +25,14 @@ Look at `__main__` and try `report_on_dataframe(your_df)` to get a printed repor
 ## Usage
 
 ### CLI
+
 ```bash
 $ rm -f dtype_diet.py
 $ wget https://raw.githubusercontent.com/ianozsvald/dtype_diet/master/dtype_diet.py
 ```
 
 ### Notebook
+
 ```bash
 %%bash
 rm -f dtype_diet.py
