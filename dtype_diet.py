@@ -36,9 +36,10 @@ def count_errors(ser, new_dtype):
     # metric will be a list of Trues if the change has equivalent value, False otherwise
     # checks for approx equal which may not be what we want
     # metric = np.isclose(ser, tmp_ser)
-    metric = ser == tmp_ser
+
+    ndiff = len(ser.compare(tmp_ser))  # pandas >= 1.1.0
     nbytes = tmp_ser.memory_usage(deep=True)
-    as_type = AsType(new_dtype, (~metric).sum(), nbytes, ser.name)
+    as_type = AsType(new_dtype, ndiff, nbytes, ser.name)
     return as_type
 
 
@@ -81,7 +82,7 @@ def report_on_dataframe(df, unit="MB"):
         unit (str, optional): [byte, MB, GB]. Defaults to "MB".
     """
 
-    unit_map = {"KB": 1024**1, "MB": 1024*2, "GB": 1024**3, "byte": 1}
+    unit_map = {"KB": 1024 ** 1, "MB": 1024 * 2, "GB": 1024 ** 3, "byte": 1}
     divide_by = unit_map[unit]
     list_of_conversions = []
 
