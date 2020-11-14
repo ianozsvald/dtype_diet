@@ -30,7 +30,7 @@ _fields = (
 Row = namedtuple("Row", _fields, defaults=(None,) * len(_fields))
 
 
-def count_errors(ser, new_dtype):
+def count_errors(ser: pd.Series, new_dtype):
     """After converting ser to new dtype, count whether items have isclose()"""
     tmp_ser = ser.astype(new_dtype)
     # metric will be a list of Trues if the change has equivalent value, False otherwise
@@ -43,17 +43,25 @@ def count_errors(ser, new_dtype):
     return as_type
 
 
-def map_dtypes_to_choices(ser):
-    new_dtypes = {
-        "int64": ["int32", "int16", "int8"],
-        "float64": ["float32", "float16"],
-        "object": ["category"],
-    }
+def map_dtypes_to_choices(ser: pd.Series, optimize: str):
+    if optimize == "memory":
+        new_dtypes = {
+            "int64": ["int32", "int16", "int8"],
+            "float64": ["float32", "float16"],
+            "object": ["category"],
+        }
+    elif optimize == "computation":
+        new_dtypes = {
+            "int64": ["int32", "int16", "int8"],
+            "float64": ["float32", "float16"],
+            "object": ["category"],
+        }
+
     return new_dtypes.get(ser.dtype.name)
 
 
-def get_smallest_valid_conversion(ser):
-    new_dtypes = map_dtypes_to_choices(ser)
+def get_smallest_valid_conversion(ser: pd.Series, optimize: str):
+    new_dtypes = map_dtypes_to_choices(ser, optimize)
     if new_dtypes:
         for new_dtype in reversed(new_dtypes):
             as_type = count_errors(ser, new_dtype)
@@ -62,7 +70,7 @@ def get_smallest_valid_conversion(ser):
     return None
 
 
-def get_improvement(as_type, current_nbytes):
+def get_improvement(as_type: AsType, current_nbytes: int) -> pd.DataFrame:
     report = (None, None, None)
     ram_usage_improvement = current_nbytes - as_type.nbytes
     if ram_usage_improvement > 0:
@@ -74,34 +82,39 @@ def get_improvement(as_type, current_nbytes):
     return report
 
 
-def report_on_dataframe(df, unit="MB"):
-    """[Report on columns that might be converted]
+def report_on_dataframe(
+    df: pd.DataFrame, unit: str = "MB", optimize: str = "memory"
+) -> pd.DataFrame:
 
+    """[Report on columns that might be converted]
     Args:
         df ([type]): [description]
         unit (str, optional): [byte, MB, GB]. Defaults to "MB".
+        optimize (str, optional): [memory, computation]. Defaults to memory.
+        [memory]: The lowest memory dtype for float is fp16.
+        [computation]: The lowest memory dtype for float is fp32.
     """
 
     unit_map = {"KB": 1024 ** 1, "MB": 1024 * 2, "GB": 1024 ** 3, "byte": 1}
     divide_by = unit_map[unit]
-    list_of_conversions = []
+    optimize_dtypes = []
 
     for col in df.columns:
-        as_type = get_smallest_valid_conversion(df[col])
+        as_type = get_smallest_valid_conversion(df[col], optimize)
         nbytes = df[col].memory_usage(deep=True)
-        # Init these attributes to be None
         proposed_memory, proposed_dtype, ram_usage_improvement = None, None, None
-        # If improvement is found, replace the attributes
         if as_type:
             (
                 proposed_bytes,
                 proposed_dtype,
                 ram_usage_improvement,
             ) = get_improvement(as_type, nbytes)
-            proposed_memory = proposed_bytes / divide_by
-            ram_usage_improvement = ram_usage_improvement / divide_by
+            # If improvement is found, replace the attributes
+            proposed_memory = proposed_bytes / divide_by if proposed_bytes else None
+            ram_usage_improvement = (
+                ram_usage_improvement / divide_by if ram_usage_improvement else None
+            )
             proposed_dtype = proposed_dtype
-
         row = Row(
             column=col,
             current_dtype=df[col].dtype,
@@ -110,7 +123,7 @@ def report_on_dataframe(df, unit="MB"):
             proposed_dtype=proposed_dtype,
             ram_usage_improvement=ram_usage_improvement,
         )
-        list_of_conversions.append(row)
+        optimize_dtypes.append(row)
     columns = [
         "Column",
         "Current dtype",
@@ -119,7 +132,7 @@ def report_on_dataframe(df, unit="MB"):
         f"Proposed Memory ({unit})",
         f"Ram Usage Improvement ({unit})",
     ]
-    report_df = pd.DataFrame(list_of_conversions, columns=columns)
+    report_df = pd.DataFrame(optimize_dtypes, columns=columns)
     report_df["Ram Usage Improvement (%)"] = (
         report_df[f"Ram Usage Improvement ({unit})"]
         / report_df[f"Current Memory ({unit})"]
@@ -129,7 +142,7 @@ def report_on_dataframe(df, unit="MB"):
     return report_df
 
 
-def optimize_dtypes(df, proposed_df):
+def optimize_dtypes(df: pd.DataFrame, proposed_df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
     for col in df.columns:
         new_dtype = proposed_df.loc[col, "Proposed dtype"]
