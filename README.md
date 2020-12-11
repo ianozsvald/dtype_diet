@@ -1,5 +1,5 @@
-# Project name here
-> Summary description here.
+# dtype_diet
+> Attempt to shrink Pandas `dtypes` without losing data so you have more RAM (and maybe more speed)
 
 
 This file will become your README and also the index of your documentation.
@@ -10,10 +10,9 @@ This file will become your README and also the index of your documentation.
 
 ## How to use
 
-Fill me in please! Don't forget code examples:
+TBD
 
-```
-# Attempt to shrink Pandas `dtypes` without losing data so you have more RAM (and maybe more speed)
+> This is a fork of https://github.com/ianozsvald/dtype_diet to continue supoprt and develop the library with approval from the original author @ianozsvald.
 
 Status - early alpha, written in 2 hours on a Sunday. Suggestions welcome, I may accept PRs but you're better off asking first (via a bug report) with the suggestion in case it isn't where I want to take the library. I'm also very happy to have "Thanks" posted via bugs too if this helps you out :-)
 
@@ -36,9 +35,7 @@ Recommendations:
 * Look at Extension arrays like https://github.com/JDASoftwareGroup/rle-array (thanks @repererum [for the tweet](https://twitter.com/crepererum/status/1267441357339201536))
 
 Look at `__main__` and try `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
-```
 
-```
 ## Usage
 
 ### CLI
@@ -55,9 +52,7 @@ $ wget https://raw.githubusercontent.com/ianozsvald/dtype_diet/master/dtype_diet
 rm -f dtype_diet.py
 wget https://raw.githubusercontent.com/ianozsvald/dtype_diet/master/dtype_diet.py
 ```
-```
 
-```
 ### Source file/Notebook cell
 
 ```python
@@ -120,12 +115,3 @@ Some other useful commands
 nbdev_build_docs
 nbdev_test_nbs
 ```
-```
-
-
-      File "<ipython-input-1-f7fc0858c6b7>", line 3
-        ```python
-        ^
-    SyntaxError: invalid syntax
-    
-
