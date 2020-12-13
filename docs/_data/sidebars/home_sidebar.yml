@@ -10,11 +10,11 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: module name here
+      title: dtype_diet
       url: core.html
     - output: web,pdf
-      title: Using data taken from Kaggle m5-uncertainty competition
-      url: example_sell_prices_ram_shrinkage.html
+      title: Minimal Example
+      url: example.html
     output: web
     title: dtype_diet
   output: web

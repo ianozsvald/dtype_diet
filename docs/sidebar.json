@@ -1,7 +1,7 @@
 {
   "dtype_diet": {
     "Overview": "/",
-    "module name here": "core.html",
-    "Using data taken from Kaggle m5-uncertainty competition": "example_sell_prices_ram_shrinkage.html"
+    "dtype_diet": "core.html",
+    "Minimal Example": "example.html"
   }
 }

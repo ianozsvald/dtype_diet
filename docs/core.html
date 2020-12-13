@@ -1,13 +1,13 @@
 ---
 
-title: module name here
+title: dtype_diet
 
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "API details."
-description: "API details."
+summary: "Optimize your dataset memory print with minimal dtype."
+description: "Optimize your dataset memory print with minimal dtype."
 nb_path: "00_core.ipynb"
 ---
 <!--
@@ -25,6 +25,379 @@ nb_path: "00_core.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="count_errors" class="doc_header"><code>count_errors</code><a href="https://github.com/noklam/dtype_diet/tree/master/dtype_diet/core.py#L39" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>count_errors</code>(<strong><code>ser</code></strong>:<code>Series</code>, <strong><code>new_dtype</code></strong>)</p>
+</blockquote>
+<p>After converting ser to new dtype, count whether items have isclose()</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="map_dtypes_to_choices" class="doc_header"><code>map_dtypes_to_choices</code><a href="https://github.com/noklam/dtype_diet/tree/master/dtype_diet/core.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>map_dtypes_to_choices</code>(<strong><code>ser</code></strong>:<code>Series</code>, <strong><code>optimize</code></strong>:<code>str</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_smallest_valid_conversion" class="doc_header"><code>get_smallest_valid_conversion</code><a href="https://github.com/noklam/dtype_diet/tree/master/dtype_diet/core.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_smallest_valid_conversion</code>(<strong><code>ser</code></strong>:<code>Series</code>, <strong><code>optimize</code></strong>:<code>str</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_improvement" class="doc_header"><code>get_improvement</code><a href="https://github.com/noklam/dtype_diet/tree/master/dtype_diet/core.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_improvement</code>(<strong><code>as_type</code></strong>:<a href="/dtype_diet/core.html#AsType"><code>AsType</code></a>, <strong><code>current_nbytes</code></strong>:<code>int</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="report_on_dataframe" class="doc_header"><code>report_on_dataframe</code><a href="https://github.com/noklam/dtype_diet/tree/master/dtype_diet/core.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>report_on_dataframe</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>unit</code></strong>:<code>str</code>=<em><code>'MB'</code></em>, <strong><code>optimize</code></strong>:<code>str</code>=<em><code>'memory'</code></em>)</p>
+</blockquote>
+<p>[Report on columns that might be converted]
+Args:
+    df ([type]): [description]
+    unit (str, optional): [byte, MB, GB]. Defaults to "MB".
+    optimize (str, optional): [memory, computation]. Defaults to memory.
+    [memory]: The lowest memory dtype for float is fp16.
+    [computation]: The lowest memory dtype for float is fp32.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Source data: https://www.kaggle.com/c/m5-forecasting-uncertainty/</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/sell_prices.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">report_on_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Current dtype</th>
+      <th>Proposed dtype</th>
+      <th>Current Memory (MB)</th>
+      <th>Proposed Memory (MB)</th>
+      <th>Ram Usage Improvement (MB)</th>
+      <th>Ram Usage Improvement (%)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>store_id</th>
+      <td>object</td>
+      <td>category</td>
+      <td>203763.920410</td>
+      <td>3340.907715</td>
+      <td>200423.012695</td>
+      <td>98.360403</td>
+    </tr>
+    <tr>
+      <th>item_id</th>
+      <td>object</td>
+      <td>category</td>
+      <td>233039.977539</td>
+      <td>6824.677734</td>
+      <td>226215.299805</td>
+      <td>97.071456</td>
+    </tr>
+    <tr>
+      <th>wm_yr_wk</th>
+      <td>int64</td>
+      <td>int16</td>
+      <td>26723.191406</td>
+      <td>6680.844727</td>
+      <td>20042.346680</td>
+      <td>74.999825</td>
+    </tr>
+    <tr>
+      <th>sell_price</th>
+      <td>float64</td>
+      <td>None</td>
+      <td>26723.191406</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/dtype_diet/core.html#report_on_dataframe"><code>report_on_dataframe</code></a> shows you the possible dtype conversion and the improvement. Note that the library try to optimize the memory base on <strong>current</strong> values of the data, you should still be careful about overflow for further transformation.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="optimize_dtypes" class="doc_header"><code>optimize_dtypes</code><a href="https://github.com/noklam/dtype_diet/tree/master/dtype_diet/core.py#L151" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>optimize_dtypes</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>proposed_df</code></strong>:<code>DataFrame</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Given a dataframe, check for lowest possible conversions:&quot;</span><span class="p">)</span>
+
+    <span class="n">nbr_rows</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_rows</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_rows</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65_536</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_rows</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1_100.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_rows</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">100_101.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_rows</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;str_a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hello&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_rows</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;str_b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbr_rows</span><span class="p">)]</span>
+    <span class="n">report_on_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;convert_dtypes does a slightly different job:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Given a dataframe, check for lowest possible conversions:
+convert_dtypes does a slightly different job:
+    a    b      c     d       e  str_a str_b
+0   0  256  65536  1100  100101  hello     0
+1   0  256  65536  1100  100101  hello     1
+2   0  256  65536  1100  100101  hello     2
+3   0  256  65536  1100  100101  hello     3
+4   0  256  65536  1100  100101  hello     4
+.. ..  ...    ...   ...     ...    ...   ...
+95  0  256  65536  1100  100101  hello    95
+96  0  256  65536  1100  100101  hello    96
+97  0  256  65536  1100  100101  hello    97
+98  0  256  65536  1100  100101  hello    98
+99  0  256  65536  1100  100101  hello    99
+
+[100 rows x 7 columns]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
