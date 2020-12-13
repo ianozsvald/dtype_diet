@@ -2,6 +2,10 @@
 > Attempt to shrink Pandas `dtypes` without losing data so you have more RAM (and maybe more speed)
 
 
+```python
+#slow
+```
+
 This file will become your README and also the index of your documentation.
 
 ## Install
@@ -35,16 +39,89 @@ print(f'Propsed df memory: {new_df.memory_usage(deep=True).sum()/1024/1024} MB')
     
 
 ```python
-print(proposed_df.to_markdown())
+proposed_df
 ```
 
-    | Column     | Current dtype   | Proposed dtype   |   Current Memory (MB) |   Proposed Memory (MB) |   Ram Usage Improvement (MB) |   Ram Usage Improvement (%) |
-    |:-----------|:----------------|:-----------------|----------------------:|-----------------------:|-----------------------------:|----------------------------:|
-    | store_id   | object          | category         |              203764   |                3340.91 |                     200423   |                     98.3604 |
-    | item_id    | object          | category         |              233040   |                6824.68 |                     226215   |                     97.0715 |
-    | wm_yr_wk   | int64           | int16            |               26723.2 |                6680.84 |                      20042.3 |                     74.9998 |
-    | sell_price | float64         |                  |               26723.2 |                 nan    |                        nan   |                    nan      |
-    
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Current dtype</th>
+      <th>Proposed dtype</th>
+      <th>Current Memory (MB)</th>
+      <th>Proposed Memory (MB)</th>
+      <th>Ram Usage Improvement (MB)</th>
+      <th>Ram Usage Improvement (%)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>store_id</th>
+      <td>object</td>
+      <td>category</td>
+      <td>203763.920410</td>
+      <td>3340.907715</td>
+      <td>200423.012695</td>
+      <td>98.360403</td>
+    </tr>
+    <tr>
+      <th>item_id</th>
+      <td>object</td>
+      <td>category</td>
+      <td>233039.977539</td>
+      <td>6824.677734</td>
+      <td>226215.299805</td>
+      <td>97.071456</td>
+    </tr>
+    <tr>
+      <th>wm_yr_wk</th>
+      <td>int64</td>
+      <td>int16</td>
+      <td>26723.191406</td>
+      <td>6680.844727</td>
+      <td>20042.346680</td>
+      <td>74.999825</td>
+    </tr>
+    <tr>
+      <th>sell_price</th>
+      <td>float64</td>
+      <td>None</td>
+      <td>26723.191406</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 Recommendations:
 

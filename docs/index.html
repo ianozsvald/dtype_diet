@@ -29,6 +29,23 @@ nb_path: "index.ipynb"
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This file will become your README and also the index of your documentation.</p>
@@ -112,7 +129,7 @@ Propsed df memory: 85.09655094146729 MB
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">proposed_df</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proposed_df</span>
 </pre></div>
 
     </div>
@@ -124,15 +141,85 @@ Propsed df memory: 85.09655094146729 MB
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>| Column     | Current dtype   | Proposed dtype   |   Current Memory (MB) |   Proposed Memory (MB) |   Ram Usage Improvement (MB) |   Ram Usage Improvement (%) |
-|:-----------|:----------------|:-----------------|----------------------:|-----------------------:|-----------------------------:|----------------------------:|
-| store_id   | object          | category         |              203764   |                3340.91 |                     200423   |                     98.3604 |
-| item_id    | object          | category         |              233040   |                6824.68 |                     226215   |                     97.0715 |
-| wm_yr_wk   | int64           | int16            |               26723.2 |                6680.84 |                      20042.3 |                     74.9998 |
-| sell_price | float64         |                  |               26723.2 |                 nan    |                        nan   |                    nan      |
-</pre>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Current dtype</th>
+      <th>Proposed dtype</th>
+      <th>Current Memory (MB)</th>
+      <th>Proposed Memory (MB)</th>
+      <th>Ram Usage Improvement (MB)</th>
+      <th>Ram Usage Improvement (%)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>store_id</th>
+      <td>object</td>
+      <td>category</td>
+      <td>203763.920410</td>
+      <td>3340.907715</td>
+      <td>200423.012695</td>
+      <td>98.360403</td>
+    </tr>
+    <tr>
+      <th>item_id</th>
+      <td>object</td>
+      <td>category</td>
+      <td>233039.977539</td>
+      <td>6824.677734</td>
+      <td>226215.299805</td>
+      <td>97.071456</td>
+    </tr>
+    <tr>
+      <th>wm_yr_wk</th>
+      <td>int64</td>
+      <td>int16</td>
+      <td>26723.191406</td>
+      <td>6680.844727</td>
+      <td>20042.346680</td>
+      <td>74.999825</td>
+    </tr>
+    <tr>
+      <th>sell_price</th>
+      <td>float64</td>
+      <td>None</td>
+      <td>26723.191406</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
