@@ -39,7 +39,7 @@ print(f'Propsed df memory: {new_df.memory_usage(deep=True).sum()/1024/1024} MB')
 
     Original df memory: 957.5197134017944 MB
     Propsed df memory: 85.09655094146729 MB
-    
+
 
 ```python
 proposed_df
@@ -160,6 +160,10 @@ $ conda create -n dtype_diet python=3.8 pandas jupyter pyarrow pytest
 $ conda activate dtype_diet
 ```
 
+## Release
+```
+make release
+```
 # Contributing
 The repository is developed with `nbdev`, a system for developing library with notebook.
 
