@@ -2,10 +2,6 @@
 > Attempt to shrink Pandas `dtypes` without losing data so you have more RAM (and maybe more speed)
 
 
-```python
-#slow
-```
-
 This file will become your README and also the index of your documentation.
 
 ## Install
@@ -26,6 +22,7 @@ Dropping an 8 byte type to a 4 (or 2 or 1 byte) type will keep halving the RAM r
 Here's an minimal example with 3 lines of code running on a Kaggle dataset showing a reduction of 957 -> 85MB, you can find the notebook in the [repository](https://github.com/noklam/dtype_diet/01_example.ipynb):
 
 ```python
+#slow
 # sell_prices.csv.zip 
 # Source data: https://www.kaggle.com/c/m5-forecasting-uncertainty/
 import pandas as pd
@@ -39,9 +36,10 @@ print(f'Propsed df memory: {new_df.memory_usage(deep=True).sum()/1024/1024} MB')
 
     Original df memory: 957.5197134017944 MB
     Propsed df memory: 85.09655094146729 MB
-
+    
 
 ```python
+#slow
 proposed_df
 ```
 
