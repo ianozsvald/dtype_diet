@@ -12,6 +12,9 @@ This file will become your README and also the index of your documentation.
 
 `pip install dtype_diet`
 
+# Documentation
+https://noklam.github.io/dtype_diet/
+
 ## How to use
 
 > This is a fork of https://github.com/ianozsvald/dtype_diet to continue supoprt and develop the library with approval from the original author @ianozsvald.
@@ -134,3 +137,40 @@ Recommendations:
 * Look at Extension arrays like https://github.com/JDASoftwareGroup/rle-array (thanks @repererum [for the tweet](https://twitter.com/crepererum/status/1267441357339201536))
 
 Look at `report_on_dataframe(your_df)` to get a printed report - no changes are made to your dataframe.
+
+## Caveats
+
+* reduced numeric ranges might lead to overflow (TODO document)
+* category dtype can have unexpected effects e.g. need for observed=True in groupby (TODO document)
+* f16 is likely to be simulated on modern hardware so calculations will be 2-3* slower than on f32 or f64
+* we could do with a link that explains binary representation of float & int for those wanting to learn more
+
+## Development 
+
+
+### Contributors
+
+* Antony Milbourne https://github.com/amilbourne
+* Mani https://github.com/neomatrix369
+
+### Local Setup
+
+```
+$ conda create -n dtype_diet python=3.8 pandas jupyter pyarrow pytest
+$ conda activate dtype_diet
+```
+
+# Contributing
+The repository is developed with `nbdev`, a system for developing library with notebook.
+
+Make sure you run this if you want to contribute to the library. For details, please refer to nbdev documentation (https://github.com/fastai/nbdev)
+```
+nbdev_install_git_hooks
+```
+
+Some other useful commands
+```
+nbdev_build_docs
+nbdev_build_lib
+nbdev_test_nbs
+```

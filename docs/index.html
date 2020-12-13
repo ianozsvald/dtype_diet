@@ -68,6 +68,13 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Documentation">Documentation<a class="anchor-link" href="#Documentation"> </a></h1><p><a href="https://noklam.github.io/dtype_diet/">https://noklam.github.io/dtype_diet/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="How-to-use">How to use<a class="anchor-link" href="#How-to-use"> </a></h2>
 </div>
 </div>
@@ -241,6 +248,34 @@ Propsed df memory: 85.09655094146729 MB
 <li>Look at Extension arrays like <a href="https://github.com/JDASoftwareGroup/rle-array">https://github.com/JDASoftwareGroup/rle-array</a> (thanks @repererum <a href="https://twitter.com/crepererum/status/1267441357339201536">for the tweet</a>)</li>
 </ul>
 <p>Look at <code>report_on_dataframe(your_df)</code> to get a printed report - no changes are made to your dataframe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Caveats">Caveats<a class="anchor-link" href="#Caveats"> </a></h2><ul>
+<li>reduced numeric ranges might lead to overflow (TODO document)</li>
+<li>category dtype can have unexpected effects e.g. need for observed=True in groupby (TODO document)</li>
+<li>f16 is likely to be simulated on modern hardware so calculations will be 2-3* slower than on f32 or f64</li>
+<li>we could do with a link that explains binary representation of float &amp; int for those wanting to learn more</li>
+</ul>
+<h2 id="Development">Development<a class="anchor-link" href="#Development"> </a></h2><h3 id="Contributors">Contributors<a class="anchor-link" href="#Contributors"> </a></h3><ul>
+<li>Antony Milbourne <a href="https://github.com/amilbourne">https://github.com/amilbourne</a></li>
+<li>Mani <a href="https://github.com/neomatrix369">https://github.com/neomatrix369</a></li>
+</ul>
+<h3 id="Local-Setup">Local Setup<a class="anchor-link" href="#Local-Setup"> </a></h3>
+<pre><code>$ conda create -n dtype_diet python=3.8 pandas jupyter pyarrow pytest
+$ conda activate dtype_diet</code></pre>
+<h1 id="Contributing">Contributing<a class="anchor-link" href="#Contributing"> </a></h1><p>The repository is developed with <code>nbdev</code>, a system for developing library with notebook.</p>
+<p>Make sure you run this if you want to contribute to the library. For details, please refer to nbdev documentation (<a href="https://github.com/fastai/nbdev">https://github.com/fastai/nbdev</a>)</p>
+
+<pre><code>nbdev_install_git_hooks</code></pre>
+<p>Some other useful commands</p>
+
+<pre><code>nbdev_build_docs
+nbdev_build_lib
+nbdev_test_nbs</code></pre>
 
 </div>
 </div>
