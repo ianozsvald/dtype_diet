@@ -1,5 +1,9 @@
 # Attempt to shrink Pandas `dtypes` without losing data so you have more RAM (and maybe more speed)
 
+**NOTE this project is deprecated** and support has moved to: https://github.com/noklam/dtype_diet
+
+**The following is deprecated**
+
 Status - early alpha, written in 2 hours on a Sunday. Suggestions welcome, I may accept PRs but you're better off asking first (via a bug report) with the suggestion in case it isn't where I want to take the library. I'm also very happy to have "Thanks" posted via bugs too if this helps you out :-)
 
 This tool checks each column to see if larger dtypes (e.g. 8 byte `float64` and `int64`) could be shrunk to smaller `dtypes` without causing any data loss. 
